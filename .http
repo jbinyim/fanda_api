@@ -1,0 +1,14 @@
+### 호출하기
+GET http://localhost:5555/items
+Content-Type: application/json
+
+### 생성하기
+POST http://localhost:5555/items
+Content-Type: application/json
+
+{
+  "name": "삼천리 로드자전거",
+  "description": "2024년에 산 자전거 판매합니다",
+  "price": 400000,
+  "tags": "운동기구"
+}
