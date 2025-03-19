@@ -15,8 +15,7 @@ app.use(express.json());
 app.get("/items", async (req, res) => {
   try {
     const sort = req.query.sort;
-    const name = req.query.name;
-    const description = req.query.description;
+    const keyword = req.query.keyword;
     const count = req.query.count;
 
     let task;
@@ -25,12 +24,13 @@ app.get("/items", async (req, res) => {
       createdAt: sort === "recent" ? -1 : 1,
     };
 
-    if (name) {
-      task = await Task.find({ name: { $regex: name } }).sort(sortOption);
-    } else if (description) {
-      task = await Task.find({ description: { $regex: description } }).sort(
-        sortOption
-      );
+    if (keyword) {
+      task = await Task.find({
+        $or: [
+          { name: { $regex: keyword } },
+          { description: { $regex: keyword } },
+        ],
+      }).sort(sortOption);
     } else {
       task = await Task.find().sort(sortOption);
     }

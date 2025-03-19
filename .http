@@ -1,5 +1,5 @@
 ### 호출하기
-GET http://localhost:5555/items
+GET http://localhost:5555/items?keyword=2
 Content-Type: application/json
 
 ### 생성하기
